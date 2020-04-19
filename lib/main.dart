@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import './transaction.dart';
 import 'package:intl/intl.dart';
 
@@ -34,7 +35,7 @@ class MyHomePage extends StatelessWidget {
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment
-              .spaceAround, //com o widgt Column, Main eh top->down / com Row(), Main eh left->right
+              .start, //com o widgt Column, Main eh top->down / com Row(), Main eh left->right
           crossAxisAlignment: CrossAxisAlignment
               .stretch, //com o widgt Column, Cross eh left->right / com Row(), Cross eh top->down
           children: <Widget>[
@@ -46,6 +47,23 @@ class MyHomePage extends StatelessWidget {
                 child: Text('data'),
               ),
             ),
+            Card(
+              elevation: 5,
+              child:Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    TextField(decoration: InputDecoration(labelText: 'Title'),),
+                    TextField(decoration: InputDecoration(labelText: 'Amount')),
+                    FlatButton(
+                      child: Text('Add transaction'),
+                      onPressed: () {},
+                      textColor: Colors.purple,
+                    )
+                  ],
+                ),
+              )),
             Column(
               children: transctions.map((trans) {
                 return Card(
