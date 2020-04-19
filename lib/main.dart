@@ -20,8 +20,6 @@ class MyHomePage extends StatelessWidget {
     Transaction(id: 't2', title: 'Weekly Groceries',amount: 16.53,date: DateTime.now())
   ];
 
-
-
    @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,15 +49,36 @@ class MyHomePage extends StatelessWidget {
                       horizontal: 15
                     ),
                     decoration: BoxDecoration(border:Border.all(
-                      color: Colors.black, 
+                      color: Colors.purple, 
                       width: 2)
                     ),
                     padding: EdgeInsets.all(10),
-                    child: Text(trans.amount.toString()),
+                    child: Text(
+                      trans.amount.toString(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold, 
+                        fontSize: 20, 
+                        color: Colors.purple
+                      )
+                    ),
                   ),
-                  Column(children: <Widget>[
-                    Text(trans.title),
-                    Text(trans.date.toString())
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        trans.title,
+                        style: TextStyle(
+                          color: Colors.black, 
+                          fontWeight: FontWeight.bold, 
+                          fontSize: 16
+                        ),
+                      ),
+                      Text(
+                        trans.date.toString(),
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),
+                      )
                   ],)
 
                 ],)
