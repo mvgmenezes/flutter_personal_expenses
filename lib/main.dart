@@ -1,20 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+ @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter App',
+        home: MyHomePage(),
+      );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
    @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter app'),
       ),
-      body: Center(
-        child: 
-            Text(
-              'You have pushed the button this many times:',
-            )
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,//com o widgt Column, Main eh top->down / com Row(), Main eh left->right
+        crossAxisAlignment: CrossAxisAlignment.stretch,//com o widgt Column, Cross eh left->right / com Row(), Cross eh top->down
+        children: <Widget>[
+        Container(
+          width: double.infinity,
+          child: Card(
+            color: Colors.blue,
+            elevation: 5,//seems that is flying
+            child: Text('data'),
+          ),
         ),
+        Card(
+          color: Colors.green,
+          child: Text('List'),
+          ),
+      ],)
       );
   }
 }
