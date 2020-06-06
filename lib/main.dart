@@ -27,23 +27,23 @@ class MyHomePage extends StatelessWidget {
           title: Text('Flutter app'),
         ),
         body: SingleChildScrollView(
-                  child: Column(
-            mainAxisAlignment: MainAxisAlignment
-                .start, //com o widgt Column, Main eh top->down / com Row(), Main eh left->right
-            crossAxisAlignment: CrossAxisAlignment
-                .stretch, //com o widgt Column, Cross eh left->right / com Row(), Cross eh top->down
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                child: Card(
-                  color: Colors.blue,
-                  elevation: 5, //seems that is flying
-                  child: Text('data'),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment
+                  .start, //com o widgt Column, Main eh top->down / com Row(), Main eh left->right
+              crossAxisAlignment: CrossAxisAlignment
+                  .stretch, //com o widgt Column, Cross eh left->right / com Row(), Cross eh top->down
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  child: Card(
+                    color: Colors.blue,
+                    elevation: 5, //seems that is flying
+                    child: Text('data'),
+                  ),
                 ),
-              ),
-              UserTransactions()
-            ],
-          ),
+                UserTransactions()
+              ],
+            ),
         ));
   }
 }
