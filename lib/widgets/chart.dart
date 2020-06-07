@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:personal_expenses/models/transaction.dart';
+import 'package:personal_expenses/widgets/chart_bar.dart';
 
 class Chart extends StatelessWidget{
 
@@ -24,6 +25,12 @@ class Chart extends StatelessWidget{
     });
   }
 
+  double get totalSpending {
+    return groupedTransactionValues.fold(0.0, (sum, item) {
+      return sum + item['amount'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -32,7 +39,7 @@ class Chart extends StatelessWidget{
         margin: EdgeInsets.all(20),
         child: Row(
           children: groupedTransactionValues.map((data) {
-            return Text('${data['day']}: ${data['amount']}');
+            return ChartBar(data['day'], data['amount'], (data['amount'] as double) / totalSpending);
           } ).toList(),
         ),
     );
