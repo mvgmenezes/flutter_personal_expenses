@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:personal_expenses/widgets/chart.dart';
@@ -24,6 +25,10 @@ class MyApp extends StatelessWidget {
             fontFamily: 'OpenSans',
             fontWeight: FontWeight.bold,
             fontSize: 18
+          ),
+          button: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold
           )
         ),
         appBarTheme: AppBarTheme(
@@ -31,7 +36,6 @@ class MyApp extends StatelessWidget {
             title: TextStyle(
                 fontFamily: 'OpenSans',
                 fontSize: 20,
-                fontWeight: FontWeight.bold
             )
           )
         )
