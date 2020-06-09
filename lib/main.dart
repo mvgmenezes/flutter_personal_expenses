@@ -68,12 +68,12 @@ class _MyHomePageState extends State<MyHomePage> {
       return tran.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList();
   }
-  void _addNewTransaction(String title, double amount){
+  void _addNewTransaction(String title, double amount, DateTime chosenDate){
     final newTx = Transaction(
         id: DateTime.now().toString(),
         title: title,
         amount: amount,
-        date: DateTime.now()
+        date: chosenDate
     );
 
     setState(() {
