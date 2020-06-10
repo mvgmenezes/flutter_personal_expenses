@@ -100,15 +100,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Personal Expenses'),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _startAddNewTransaction(context),)
+      ],
+    );
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Personal Expenses'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _startAddNewTransaction(context),)
-        ],
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
             mainAxisAlignment: MainAxisAlignment
@@ -116,8 +118,14 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment
                 .stretch, //com o widgt Column, Cross eh left->right / com Row(), Cross eh top->down
             children: <Widget>[
-              Chart(_recentTransactions),
-              TransactionList(_user_transctions, _deleteTransaction),
+              Container(
+                  height: (MediaQuery.of(context).size.height - appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) * 0.4,
+                  child: Chart(_recentTransactions)),
+              Container(
+                  height: (MediaQuery.of(context).size.height - appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) * 0.6,
+                  child: TransactionList(_user_transctions, _deleteTransaction)),
             ],
           ),
       ),
