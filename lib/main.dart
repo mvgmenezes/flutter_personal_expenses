@@ -110,7 +110,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final appBar = AppBar(
+    final PreferredSizeWidget appBar = Platform.isIOS?
+    CupertinoNavigationBar(
+      middle: Text('Personal Expenses'),//title
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+         GestureDetector(
+           child: Icon(CupertinoIcons.add),
+           onTap: () => _startAddNewTransaction(context),
+         )
+        ],
+      ),
+    ) :
+    AppBar(
       title: Text('Personal Expenses'),
       actions: <Widget>[
         IconButton(
@@ -119,26 +132,32 @@ class _MyHomePageState extends State<MyHomePage> {
       ],
     );
 
-    return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment
-                .start, //com o widgt Column, Main eh top->down / com Row(), Main eh left->right
-            crossAxisAlignment: CrossAxisAlignment
-                .stretch, //com o widgt Column, Cross eh left->right / com Row(), Cross eh top->down
-            children: <Widget>[
-              Container(
-                  height: (MediaQuery.of(context).size.height - appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) * 0.3,
-                  child: Chart(_recentTransactions)),
-              Container(
-                  height: (MediaQuery.of(context).size.height - appBar.preferredSize.height -
-                      MediaQuery.of(context).padding.top) * 0.7,
-                  child: TransactionList(_user_transctions, _deleteTransaction)),
-            ],
-          ),
+
+    final body = SafeArea(child: SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment
+            .start, //com o widgt Column, Main eh top->down / com Row(), Main eh left->right
+        crossAxisAlignment: CrossAxisAlignment
+            .stretch, //com o widgt Column, Cross eh left->right / com Row(), Cross eh top->down
+        children: <Widget>[
+          Container(
+              height: (MediaQuery.of(context).size.height - appBar.preferredSize.height -
+                  MediaQuery.of(context).padding.top) * 0.3,
+              child: Chart(_recentTransactions)),
+          Container(
+              height: (MediaQuery.of(context).size.height - appBar.preferredSize.height -
+                  MediaQuery.of(context).padding.top) * 0.7,
+              child: TransactionList(_user_transctions, _deleteTransaction)),
+        ],
       ),
+    ),
+    );
+
+    return Platform.isIOS?
+    CupertinoPageScaffold(child: body,) :
+    Scaffold(
+      appBar: appBar,
+      body: body,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Platform.isIOS? Container(): FloatingActionButton(
         child: Icon(Icons.add),
