@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -138,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: Platform.isIOS? Container(): FloatingActionButton(
         child: Icon(Icons.add),
         onPressed:() => _startAddNewTransaction(context),
       ),
